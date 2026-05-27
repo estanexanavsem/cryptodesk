@@ -1,0 +1,13 @@
+# Apache front-controller routing: send anything that isn't a real file to index.php
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Never serve the SQLite database, even if it ends up under the web root
+<FilesMatch "\.(sqlite|sqlite-wal|sqlite-shm)$">
+    Require all denied
+</FilesMatch>

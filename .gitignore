@@ -1,0 +1,10 @@
+# SQLite database is generated on first run / by the seeder
+/data/*.sqlite
+/data/*.sqlite-wal
+/data/*.sqlite-shm
+
+# Note: cover photos (public/assets/covers/) and data/covers.json are committed
+# so the blog shows real images on first run. Refresh them with bin/fetch_images.php.
+
+.DS_Store
+*.log
