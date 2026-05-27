@@ -7,8 +7,10 @@ RUN a2enmod rewrite
 WORKDIR /app
 COPY . /app
 
-# The SQLite database is created at runtime by the app; keep its dir writable.
-RUN mkdir -p /app/data && chmod -R 0777 /app/data
+# Seed the SQLite database at build time so the image ships ready-to-serve.
+# This avoids a first-request seeding race when the container cold-starts under
+# concurrent traffic (e.g. when Render wakes the free instance from sleep).
+RUN mkdir -p /app/data && php bin/seed.php && chmod -R 0777 /app/data
 
 # Serve from public/ with .htaccess overrides enabled.
 COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf

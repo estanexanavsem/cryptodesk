@@ -105,8 +105,13 @@ final class ArticleRepository
 
     public function incrementViews(int $id): void
     {
-        $stmt = $this->pdo->prepare('UPDATE articles SET views = views + 1 WHERE id = :id');
-        $stmt->execute([':id' => $id]);
+        // A view-count bump must never break the page if the DB is briefly locked.
+        try {
+            $stmt = $this->pdo->prepare('UPDATE articles SET views = views + 1 WHERE id = :id');
+            $stmt->execute([':id' => $id]);
+        } catch (\PDOException) {
+            // ignore — cosmetic counter only
+        }
     }
 
     /** @return list<array<string,mixed>> */

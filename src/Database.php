@@ -27,6 +27,9 @@ final class Database
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         $pdo->exec('PRAGMA journal_mode = WAL;');
         $pdo->exec('PRAGMA foreign_keys = ON;');
+        // Wait (rather than fail) when another process holds a write lock —
+        // important under Apache's concurrent workers on one SQLite file.
+        $pdo->exec('PRAGMA busy_timeout = 5000;');
 
         self::$pdo = $pdo;
         return $pdo;
