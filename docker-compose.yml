@@ -1,9 +1,9 @@
 services:
   web:
-    image: php:8.3-cli
-    working_dir: /app
-    command: php -S 0.0.0.0:8000 -t public public/index.php
+    build: .
     ports:
-      - "8000:8000"
+      - "8000:10000"   # http://localhost:8000  →  Apache on container port 10000
+    environment:
+      - PORT=10000
     volumes:
       - .:/app
