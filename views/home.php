@@ -2,7 +2,7 @@
 
 <section class="hero">
     <div class="hero-copy">
-        <p class="kicker">CryptoDesk</p>
+        <p class="kicker"><?= e($siteName) ?></p>
         <h1><?= e($siteTagline) ?></h1>
         <p class="lede">Hands-on guides to terminals, indicators, DeFi plumbing and the APIs that hold a trading operation together — <?= (int) $totalArticles ?> deep dives and counting.</p>
     </div>

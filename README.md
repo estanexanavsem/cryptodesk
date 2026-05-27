@@ -1,6 +1,6 @@
-# CryptoDesk
+# MarketDesk
 
-A small news/blog about crypto-trading tools — terminals, indicators, DeFi plumbing, on-chain analytics, APIs and custody. **100 articles** are generated from a keyword list and grouped into 7 topics. Each article has a real, openly-licensed cover photo (downloaded from Openverse), falling back to a generated SVG chart when no photo is available.
+A small news/blog about trading tools — terminals, indicators, DeFi plumbing, on-chain analytics, APIs and custody. **100 articles** are generated from a keyword list and grouped into 7 topics. Each article has a real, openly-licensed cover photo (downloaded from Openverse), falling back to a generated SVG chart when no photo is available.
 
 Built to stay simple: **plain PHP 8.3**, a single **SQLite** file, **zero runtime dependencies**, no build step.
 

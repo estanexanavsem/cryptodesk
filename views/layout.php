@@ -76,7 +76,7 @@ $ld = [
             <span class="brand-rule" aria-hidden="true"></span>
             <span class="brand-name"><?= e($siteName) ?></span>
         </a>
-        <p class="masthead-edition">Crypto&nbsp;Trading&nbsp;Tools · Est.&nbsp;2026</p>
+        <p class="masthead-edition">Markets · Trading&nbsp;Tools · Est.&nbsp;2026</p>
         <form class="search" action="/search" method="get" role="search">
             <label class="visually-hidden" for="site-search">Search articles</label>
             <input type="search" id="site-search" name="q" placeholder="Search tools…" value="<?= e($_GET['q'] ?? '') ?>">

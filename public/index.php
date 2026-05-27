@@ -53,7 +53,7 @@ if ($path === '/') {
         'popular' => $repo->popular(5),
         'totalArticles' => $repo->countAll(),
     ], CD_SITE_NAME . ' — ' . CD_SITE_TAGLINE, [
-        'description' => 'Hands-on guides to crypto-trading tools — terminals, indicators, DeFi, on-chain analytics, APIs and custody. ' . $repo->countAll() . ' deep dives.',
+        'description' => 'Hands-on guides to trading tools — terminals, indicators, DeFi, on-chain analytics, APIs and custody. ' . $repo->countAll() . ' deep dives.',
         'canonical' => '/',
         'image' => $featured['image'] ?? null,
     ]);
