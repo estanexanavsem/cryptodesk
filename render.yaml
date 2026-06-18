@@ -5,5 +5,9 @@ services:
     plan: free
     region: oregon
     dockerfilePath: ./Dockerfile
-    healthCheckPath: /
+    # The front controller (public/index.php) is an Adspect cloak that returns
+    # 404 to non-target traffic, including Render's health checker. Point the
+    # health check at a static file Apache serves directly (the .htaccess
+    # rewrite passes real files through before reaching the cloak).
+    healthCheckPath: /healthz
     autoDeploy: true
