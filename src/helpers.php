@@ -83,13 +83,13 @@ function category_color(string $slug): string
 {
     // Muted, serious "section" tones that read well as tags on a light paper UI.
     $colors = [
-        'trading-platforms' => '#21478f',  // navy
-        'technical-analysis' => '#5b4b9e', // muted violet
-        'defi-liquidity' => '#1d7a45',     // forest green
-        'on-chain-analytics' => '#a4670f', // ochre
-        'portfolio-risk' => '#46506a',     // graphite slate
-        'automation-apis' => '#0f6e7d',    // teal
-        'wallets-security' => '#8a2c6b',   // plum
+        'rigs-hardware' => '#21478f',       // navy
+        'cooling-power' => '#0f6e7d',       // teal
+        'facilities-builds' => '#46506a',   // graphite slate
+        'hosting-services' => '#1d7a45',    // forest green
+        'network-validation' => '#5b4b9e',  // muted violet
+        'performance-roi' => '#a4670f',     // ochre
+        'getting-started' => '#8a2c6b',     // plum
     ];
 
     return $colors[$slug] ?? '#46506a';
@@ -110,9 +110,10 @@ function cd_rng(int $seed): \Closure
 }
 
 /**
- * Render a self-contained candlestick chart as inline SVG. Fully deterministic
- * for a given $seed, so every article gets its own stable "chart" artwork with
- * no external image files or network calls.
+ * Render a self-contained throughput chart as inline SVG: per-interval bars
+ * (think hashrate or compute over time) with a moving-average trend line.
+ * Fully deterministic for a given $seed, so every article gets its own stable
+ * artwork with no external image files or network calls.
  */
 function cd_chart_svg(string $seed, string $color, int $width = 720, int $height = 360): string
 {
@@ -123,47 +124,33 @@ function cd_chart_svg(string $seed, string $color, int $width = 720, int $height
 
     $count = max(14, (int) floor($plotW / 16));
     $slot = $plotW / $count;
-    $bodyW = $slot * 0.55;
+    $barW = $slot * 0.55;
+    $axisY = $pad + $plotH;
 
-    // Random-walk OHLC series.
-    $price = 0.45 + $rand() * 0.1;
-    $candles = [];
-    $min = 1.0;
-    $max = 0.0;
+    // Random-walk throughput series in [0.08, 0.96].
+    $v = 0.4 + $rand() * 0.2;
+    $vals = [];
     for ($i = 0; $i < $count; $i++) {
-        $open = $price;
-        $close = min(0.95, max(0.05, $open + ($rand() - 0.47) * 0.09));
-        $high = min(0.99, max($open, $close) + $rand() * 0.04);
-        $low = max(0.01, min($open, $close) - $rand() * 0.04);
-        $candles[] = [$open, $close, $high, $low];
-        $min = min($min, $low);
-        $max = max($max, $high);
-        $price = $close;
+        $v = min(0.96, max(0.08, $v + ($rand() - 0.45) * 0.16));
+        $vals[] = $v;
     }
-    $range = max(0.0001, $max - $min);
-    $y = static fn (float $v): float => $pad + (1 - (($v - $min) / $range)) * $plotH;
+    $y = static fn (float $val): float => $pad + (1 - $val) * $plotH;
 
-    // Light, editorial palette: category colour up-candles, neutral grey down-candles.
-    $down = '#aab2bd';
-    $body = '';
+    // Bars rising from the baseline, plus a moving-average trend line.
+    $bars = '';
     $maPoints = [];
     $window = [];
-    $lastY = $pad + $plotH / 2;
-    foreach ($candles as $i => [$open, $close, $high, $low]) {
+    $lastY = $axisY;
+    foreach ($vals as $i => $val) {
         $cx = $pad + $slot * $i + $slot / 2;
-        $c = $close >= $open ? $color : $down;
-        $top = min($y($open), $y($close));
-        $h = max(1.5, abs($y($close) - $y($open)));
-        $body .= sprintf(
-            '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="1.1"/>',
-            $cx, $y($high), $cx, $y($low), $c
-        );
-        $body .= sprintf(
-            '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="%s"/>',
-            $cx - $bodyW / 2, $top, $bodyW, $h, $c
+        $top = $y($val);
+        $h = max(1.5, $axisY - $top);
+        $bars .= sprintf(
+            '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" rx="1.2" fill="%s" opacity="%.2f"/>',
+            $cx - $barW / 2, $top, $barW, $h, $color, 0.55 + $val * 0.4
         );
 
-        $window[] = $close;
+        $window[] = $val;
         if (count($window) > 5) {
             array_shift($window);
         }
@@ -181,28 +168,22 @@ function cd_chart_svg(string $seed, string $color, int $width = 720, int $height
         );
     }
     // Baseline axis.
-    $axisY = $pad + $plotH;
     $grid .= sprintf('<line x1="%d" y1="%.1f" x2="%d" y2="%.1f" stroke="#d6d9de" stroke-width="1"/>', $pad, $axisY, $width - $pad, $axisY);
 
     $maPath = 'M' . implode(' L', $maPoints);
-    $areaPath = $maPath . sprintf(' L%.1f,%.1f L%.1f,%.1f Z', $width - $pad, $axisY, $pad + $slot / 2, $axisY);
     $lastX = $width - $pad;
     $uid = substr(md5($seed), 0, 6);
 
     return <<<SVG
-<svg viewBox="0 0 {$width} {$height}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Chart illustration">
+<svg viewBox="0 0 {$width} {$height}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Throughput illustration">
   <defs>
     <linearGradient id="bg{$uid}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f3f4f6"/>
     </linearGradient>
-    <linearGradient id="ar{$uid}" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="{$color}" stop-opacity="0.12"/><stop offset="1" stop-color="{$color}" stop-opacity="0"/>
-    </linearGradient>
   </defs>
   <rect width="{$width}" height="{$height}" fill="url(#bg{$uid})"/>
   {$grid}
-  <path d="{$areaPath}" fill="url(#ar{$uid})"/>
-  {$body}
+  {$bars}
   <path d="{$maPath}" fill="none" stroke="{$color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
   <line x1="{$lastX}" y1="{$lastY}" x2="{$pad}" y2="{$lastY}" stroke="{$color}" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.5"/>
   <circle cx="{$lastX}" cy="{$lastY}" r="3" fill="{$color}"/>
@@ -305,7 +286,7 @@ function render_sidebar(array $popular, array $nav = []): string
     }
 
     $html .= '<section class="widget newsletter"><h2>The Desk, weekly</h2>'
-        . '<p>One email, every Monday: the tools and tactics that actually shipped.</p>'
+        . '<p>One email, every Monday: the gear and tactics that actually shipped.</p>'
         . '<form onsubmit="return false"><input type="email" name="email" autocomplete="email" placeholder="you@desk.io" aria-label="Email">'
         . '<button type="submit">Subscribe</button></form></section>';
 

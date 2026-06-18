@@ -1,6 +1,6 @@
 # MarketDesk
 
-A small news/blog about trading tools — terminals, indicators, DeFi plumbing, on-chain analytics, APIs and custody. **100 articles** are generated from a keyword list and grouped into 7 topics. Each article has a real, openly-licensed cover photo (downloaded from Openverse), falling back to a generated SVG chart when no photo is available.
+A small news/blog about mining hardware — rigs, GPU and ASIC miners, cooling, power, facilities, hosting, network validation and ROI. **100 articles** are generated from a keyword list and grouped into 7 topics. Each article has a real, openly-licensed cover photo (downloaded from Openverse), falling back to a generated SVG throughput chart when no photo is available.
 
 Built to stay simple: **plain PHP 8.3**, a single **SQLite** file, **zero runtime dependencies**, no build step.
 
@@ -12,8 +12,8 @@ Built to stay simple: **plain PHP 8.3**, a single **SQLite** file, **zero runtim
 | Storage        | SQLite via PDO (`data/cryptodesk.sqlite`)|
 | Routing        | Single front controller (`public/index.php`) |
 | Templates      | Plain PHP views + one tiny `View` class  |
-| Media          | Procedurally generated inline SVG charts |
-| Styling        | Hand-written CSS, dark "fintech" theme   |
+| Media          | Procedurally generated inline SVG throughput charts |
+| Styling        | Hand-written CSS, light editorial theme  |
 
 ## Run it
 

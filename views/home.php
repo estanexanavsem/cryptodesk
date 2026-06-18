@@ -4,7 +4,7 @@
     <div class="hero-copy">
         <p class="kicker"><?= e($siteName) ?></p>
         <h1><?= e($siteTagline) ?></h1>
-        <p class="lede">Hands-on guides to terminals, indicators, DeFi plumbing and the APIs that hold a trading operation together — <?= (int) $totalArticles ?> deep dives and counting.</p>
+        <p class="lede">Hands-on guides to rigs, cooling, hosting and the economics that keep a mining operation running — <?= (int) $totalArticles ?> deep dives and counting.</p>
     </div>
 </section>
 

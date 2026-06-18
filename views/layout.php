@@ -76,10 +76,10 @@ $ld = [
             <span class="brand-rule" aria-hidden="true"></span>
             <span class="brand-name"><?= e($siteName) ?></span>
         </a>
-        <p class="masthead-edition">Markets · Trading&nbsp;Tools · Est.&nbsp;2026</p>
+        <p class="masthead-edition">Rigs · Hosting · Est.&nbsp;2026</p>
         <form class="search" action="/search" method="get" role="search">
             <label class="visually-hidden" for="site-search">Search articles</label>
-            <input type="search" id="site-search" name="q" placeholder="Search tools…" value="<?= e($_GET['q'] ?? '') ?>">
+            <input type="search" id="site-search" name="q" placeholder="Search hardware…" value="<?= e($_GET['q'] ?? '') ?>">
         </form>
     </div>
     <nav class="sectionbar" aria-label="Sections">

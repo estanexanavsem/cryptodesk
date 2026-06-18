@@ -6,7 +6,7 @@
     <?php if ($query !== ''): ?>
         <p class="lede"><?= count($results) ?> article<?= count($results) === 1 ? '' : 's' ?> found.</p>
     <?php else: ?>
-        <p class="lede">Type a tool, indicator or topic into the box above.</p>
+        <p class="lede">Type a part, a rig or a topic into the box above.</p>
     <?php endif; ?>
 </header>
 

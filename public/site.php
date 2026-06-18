@@ -53,7 +53,7 @@ if ($path === '/') {
         'popular' => $repo->popular(5),
         'totalArticles' => $repo->countAll(),
     ], CD_SITE_NAME . ' — ' . CD_SITE_TAGLINE, [
-        'description' => 'Hands-on guides to trading tools — terminals, indicators, DeFi, on-chain analytics, APIs and custody. ' . $repo->countAll() . ' deep dives.',
+        'description' => 'Hands-on guides to mining hardware — rigs, cooling, power, hosting, network validation and ROI. ' . $repo->countAll() . ' deep dives.',
         'canonical' => '/',
         'image' => $featured['image'] ?? null,
     ]);
@@ -68,7 +68,7 @@ if ($path === '/search') {
         'results' => $results,
         'popular' => $repo->popular(5),
     ], 'Search' . ($query !== '' ? ': ' . $query : '') . ' — ' . CD_SITE_NAME, [
-        'description' => 'Search ' . CD_SITE_NAME . ' for trading tools, indicators and topics.',
+        'description' => 'Search ' . CD_SITE_NAME . ' for rigs, parts and topics.',
         'canonical' => '/search',
         'noindex' => true,
     ]);
@@ -80,7 +80,7 @@ if ($path === '/about') {
         'totalArticles' => $repo->countAll(),
         'categories' => $repo->categories(),
     ], 'About ' . CD_SITE_NAME, [
-        'description' => 'About ' . CD_SITE_NAME . ' — an editorial demo: ' . $repo->countAll() . ' guides on the tools traders and builders reach for.',
+        'description' => 'About ' . CD_SITE_NAME . ' — an editorial demo: ' . $repo->countAll() . ' guides on the gear and decisions mining operators reach for.',
         'canonical' => '/about',
     ]);
     return;

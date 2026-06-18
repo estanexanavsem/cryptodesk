@@ -21,7 +21,7 @@ $root = dirname(__DIR__);
 require $root . '/src/content.php';
 
 const OV_ENDPOINT = 'https://api.openverse.org/v1/images/';
-const UA = 'CryptoDesk/1.0 (editorial demo; +https://localhost)';
+const UA = 'MarketDesk/1.0 (editorial demo; +https://localhost)';
 const API_PAUSE = 4;        // seconds between API calls (anon burst = 20/min)
 const MAX_BYTES = 4_500_000; // skip oversized originals
 const MAX_PER_CREATOR = 1;  // one image per creator — kills near-duplicate photosets
@@ -36,20 +36,29 @@ if (!is_dir($coversDir)) {
 
 // Search terms per category — topical, but broad enough to return CC photos.
 $queries = [
-    'trading-platforms' => ['stock market', 'stock exchange', 'financial chart', 'forex trading', 'stock market screen'],
-    'technical-analysis' => ['stock chart', 'candlestick chart', 'financial graph', 'market analysis chart', 'trading chart'],
-    'defi-liquidity' => ['cryptocurrency coins', 'ethereum coin', 'decentralized finance', 'crypto token', 'litecoin'],
-    'on-chain-analytics' => ['blockchain', 'bitcoin network', 'data analytics dashboard', 'server data center', 'network nodes'],
-    'portfolio-risk' => ['stack of coins money', 'piggy bank savings', 'financial calculator', 'dollar bills cash', 'bull stock market'],
-    'automation-apis' => ['computer programming code', 'software developer screen', 'server room', 'data center network', 'source code'],
-    'wallets-security' => ['cryptocurrency wallet', 'hardware security key', 'digital security lock', 'padlock cyber security', 'safe vault'],
+    'rigs-hardware' => ['graphics card', 'computer motherboard', 'circuit board', 'computer processor', 'gpu video card'],
+    'cooling-power' => ['cpu cooler', 'heatsink fan', 'computer cooling fan', 'server cooling fan', 'power supply unit'],
+    'facilities-builds' => ['server rack', 'data center', 'server room', 'server cabinet', 'warehouse interior'],
+    'hosting-services' => ['data center servers', 'server maintenance', 'server room rack', 'computer server', 'computer technician'],
+    'network-validation' => ['network switch', 'ethernet cables', 'server room network', 'data center network', 'computer chip'],
+    'performance-roi' => ['electricity meter', 'power meter', 'kilowatt hour meter', 'electricity consumption', 'energy meter'],
+    'getting-started' => ['desktop computer tower', 'computer workstation', 'pc build', 'desktop computer', 'computer hardware'],
 ];
 
-// Categories where broad terms attract off-topic photos: keep only results whose
-// title actually looks finance-related.
+// Per-category relevance filter: a candidate's title must match to be kept,
+// so off-topic CC results (laptops, cars, games, landscapes) get dropped.
 $titleFilters = [
-    'trading-platforms' => '/(stock|market|exchange|trad|financ|forex|nasdaq|dow|ticker|bull market|bear market|invest|wall street)/i',
+    'rigs-hardware' => '/(graphics?\s?card|\bgpu\b|video\s?card|motherboard|circuit\s?board|processor|\bcpu\b|chipset|\bpcb\b|computer\s?hardware|riser|\basic\b)/i',
+    'cooling-power' => '/(cool|\bfans?\b|heat\s?sink|heatsink|thermal|radiator|liquid|water[\s-]?cool|cooler|power\s?supply|\bpsu\b)/i',
+    'facilities-builds' => '/(server\s?racks?|\bracks?\b|data\s?cent|server\s?room|cabinet|enclosure|warehouse|container)/i',
+    'hosting-services' => '/(servers?|data\s?cent|\bracks?\b|hosting|technician|maintenance|hardware)/i',
+    'network-validation' => '/(network|\bcabl|switch|router|ethernet|data\s?cent|servers?|\bchips?\b|circuit|\bcpu\b|processor)/i',
+    'performance-roi' => '/(electric|meter|kilowatt|\bkwh\b|power\s?meter|energy|\bwatts?\b|consumption)/i',
+    'getting-started' => '/(computer|desktop|\bpc\b|workstation|servers?|hardware|tower|\bbuild\b|\brig\b|\blab\b)/i',
 ];
+
+// Reject obvious off-domain photos regardless of category (matched on title).
+const TITLE_REJECT = '/(\bcars?\b|vehicle|automob|\bauto\b|dashboard|minecraft|\bgames?\b|gaming|\btoys?\b|laserdisc|\bmovie\b|\bfilm\b|cartoon|\bsunset\b|\bsunrise\b|mountain|landscape|\bhouse\b|wedding|portrait|recipe|\bfood\b|rendering)/i';
 
 /** GET JSON from the Openverse API. */
 function ov_search(string $query, int $page): array
@@ -167,7 +176,12 @@ foreach ($slugsByCat as $cat => $slugs) {
                 if ($url === '' || isset($seen[$id]) || url_ext($url) === '') {
                     continue;
                 }
-                if ($filter !== null && !preg_match($filter, (string) ($r['title'] ?? ''))) {
+                // Keep only on-topic titles, and drop obvious off-domain shots.
+                $title = (string) ($r['title'] ?? '');
+                if ($filter !== null && !preg_match($filter, $title)) {
+                    continue;
+                }
+                if (preg_match(TITLE_REJECT, $title)) {
                     continue;
                 }
                 // Cap images per creator so one photoset can't dominate.

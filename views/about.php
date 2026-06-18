@@ -3,7 +3,7 @@
 <header class="page-head">
     <p class="kicker">About</p>
     <h1>What <?= e($siteName) ?> is</h1>
-    <p class="lede"><?= e($siteName) ?> is an editorial demo: <?= (int) $totalArticles ?> guides covering the tools traders and builders reach for, from order routing to on-chain analytics.</p>
+    <p class="lede"><?= e($siteName) ?> is an editorial demo: <?= (int) $totalArticles ?> guides covering the gear and decisions mining operators reach for, from rigs and cooling to hosting and payback.</p>
 </header>
 
 <div class="prose-narrow">

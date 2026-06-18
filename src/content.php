@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Seed content for CryptoDesk.
+ * Seed content for the blog.
  *
  * The 100 target keywords are mapped to editorial categories, and an article
  * is generated for each one. Generation is deterministic (seeded by the
@@ -14,40 +14,40 @@ declare(strict_types=1);
 function cd_categories(): array
 {
     return [
-        'trading-platforms' => [
-            'name' => 'Trading Platforms',
-            'tagline' => 'Execution & market access',
-            'description' => 'Exchanges, terminals, order routing and the plumbing that gets your orders filled.',
+        'rigs-hardware' => [
+            'name' => 'Rigs & Hardware',
+            'tagline' => 'Miners, cards & components',
+            'description' => 'Rigs, GPU and ASIC miners, boards and the parts that turn power into hashes.',
         ],
-        'technical-analysis' => [
-            'name' => 'Technical Analysis',
-            'tagline' => 'Charts, indicators & signals',
-            'description' => 'Indicators, chart patterns and the math behind reading price action.',
+        'cooling-power' => [
+            'name' => 'Cooling & Power',
+            'tagline' => 'Thermals, power & efficiency',
+            'description' => 'Cooling, airflow, power supplies and the electricity math that decides whether a rig pays.',
         ],
-        'defi-liquidity' => [
-            'name' => 'DeFi & Liquidity',
-            'tagline' => 'AMMs, pools & yield',
-            'description' => 'Automated market makers, liquidity provision, staking and on-chain yield.',
+        'facilities-builds' => [
+            'name' => 'Facilities & Builds',
+            'tagline' => 'Racks, space & scale',
+            'description' => 'Racks, enclosures, containers and the sites that house rigs from one unit to thousands.',
         ],
-        'on-chain-analytics' => [
-            'name' => 'On-Chain Analytics',
-            'tagline' => 'Reading the blockchain',
-            'description' => 'Dashboards, explorers and metrics that turn raw chain data into signal.',
+        'hosting-services' => [
+            'name' => 'Hosting & Services',
+            'tagline' => 'Managed, hosted & maintained',
+            'description' => 'Hosting, managed operations, maintenance and the suppliers behind a running fleet.',
         ],
-        'portfolio-risk' => [
-            'name' => 'Portfolio & Risk',
-            'tagline' => 'Allocation & drawdown control',
-            'description' => 'Position sizing, rebalancing and the risk math that keeps accounts alive.',
+        'network-validation' => [
+            'name' => 'Network & Validation',
+            'tagline' => 'Proof, consensus & ledgers',
+            'description' => 'Proof of work, consensus, validation and the compute that secures a distributed network.',
         ],
-        'automation-apis' => [
-            'name' => 'Automation & APIs',
-            'tagline' => 'Bots, SDKs & data feeds',
-            'description' => 'Trading bots, backtesting, market-data APIs and the SDKs that wire them up.',
+        'performance-roi' => [
+            'name' => 'Performance & ROI',
+            'tagline' => 'Efficiency & payback',
+            'description' => 'Hashrate per watt, tuning, profitability and the numbers that decide what is worth running.',
         ],
-        'wallets-security' => [
-            'name' => 'Wallets & Security',
-            'tagline' => 'Custody & key management',
-            'description' => 'Hardware wallets, multisig, cold storage and custody for serious balances.',
+        'getting-started' => [
+            'name' => 'Getting Started',
+            'tagline' => 'First rigs & home setups',
+            'description' => 'Beginner guides, home and DIY builds, and getting a first small setup running.',
         ],
     ];
 }
@@ -60,106 +60,106 @@ function cd_categories(): array
 function cd_keywords(): array
 {
     return [
-        ['Trading terminal', 'trading-platforms'],
-        ['Charting software', 'technical-analysis'],
-        ['Order management system', 'trading-platforms'],
-        ['Portfolio tracker', 'portfolio-risk'],
-        ['Price alerts', 'trading-platforms'],
-        ['Market analysis tool', 'technical-analysis'],
-        ['Algo trading platform', 'automation-apis'],
-        ['Moving averages indicator', 'technical-analysis'],
-        ['RSI oscillator', 'technical-analysis'],
-        ['MACD histogram', 'technical-analysis'],
-        ['Bollinger bands settings', 'technical-analysis'],
-        ['Fibonacci retracement levels', 'technical-analysis'],
-        ['Volume profile chart', 'technical-analysis'],
-        ['Bid ask spread tracker', 'trading-platforms'],
-        ['Order book depth map', 'trading-platforms'],
-        ['Smart contract audit tool', 'wallets-security'],
-        ['On chain analytics dashboard', 'on-chain-analytics'],
-        ['Blockchain data API', 'on-chain-analytics'],
-        ['Gas fee calculator', 'on-chain-analytics'],
-        ['Block explorer analytics', 'on-chain-analytics'],
-        ['Multi exchange trading interface', 'trading-platforms'],
-        ['Spot market aggregator', 'trading-platforms'],
-        ['Futures contract platform', 'trading-platforms'],
-        ['Perpetual swap exchange', 'trading-platforms'],
-        ['Margin trading tools', 'trading-platforms'],
-        ['Funding rate comparison', 'trading-platforms'],
-        ['Open interest tracker', 'trading-platforms'],
-        ['Long short ratio monitor', 'trading-platforms'],
-        ['Volume weighted average price', 'technical-analysis'],
-        ['Liquidity pool provider', 'defi-liquidity'],
-        ['Automated market maker AMM', 'defi-liquidity'],
-        ['Token swap aggregator', 'defi-liquidity'],
-        ['Yield farming calculator', 'defi-liquidity'],
-        ['Staking rewards dashboard', 'defi-liquidity'],
-        ['LP token optimizer', 'defi-liquidity'],
-        ['Impermanent loss protection', 'defi-liquidity'],
-        ['Decentralized exchange volume', 'defi-liquidity'],
-        ['Cross chain bridge aggregator', 'defi-liquidity'],
-        ['Wrapped asset converter', 'defi-liquidity'],
-        ['Stablecoin liquidity pools', 'defi-liquidity'],
-        ['Dollar cost averaging tool', 'portfolio-risk'],
-        ['Rebalancing portfolio manager', 'portfolio-risk'],
-        ['Grid trading bot setup', 'automation-apis'],
-        ['Copy trading platform interface', 'automation-apis'],
-        ['Signal based trade automation', 'automation-apis'],
-        ['Strategy backtesting engine', 'automation-apis'],
-        ['Risk management calculator', 'portfolio-risk'],
-        ['Position sizing optimizer', 'portfolio-risk'],
-        ['Maximum drawdown tracker', 'portfolio-risk'],
-        ['Sharpe ratio analytics', 'portfolio-risk'],
-        ['Technical analysis scanner', 'technical-analysis'],
-        ['Candlestick pattern recognition', 'technical-analysis'],
-        ['Volume spike alert system', 'technical-analysis'],
-        ['Support resistance levels', 'technical-analysis'],
-        ['Trend line drawing tool', 'technical-analysis'],
-        ['Multi timeframe chart analysis', 'technical-analysis'],
-        ['Real time market data feed', 'automation-apis'],
-        ['WebSocket price streaming', 'automation-apis'],
-        ['API trading interface', 'automation-apis'],
-        ['Custom indicator builder', 'technical-analysis'],
-        ['Order execution speed metrics', 'trading-platforms'],
-        ['Slippage reduction tools', 'trading-platforms'],
-        ['High frequency trading platform', 'trading-platforms'],
-        ['Market making infrastructure', 'trading-platforms'],
-        ['Trading volume heatmap', 'technical-analysis'],
-        ['Exchange liquidity ranking', 'trading-platforms'],
-        ['Token unlock schedule tracker', 'on-chain-analytics'],
-        ['Governance proposal monitor', 'on-chain-analytics'],
-        ['Market dominance chart', 'on-chain-analytics'],
-        ['Network gas history graph', 'on-chain-analytics'],
-        ['Altcoin market cap analysis', 'on-chain-analytics'],
-        ['Trading fee comparison tool', 'trading-platforms'],
-        ['API rate limit dashboard', 'automation-apis'],
-        ['Node performance monitor', 'on-chain-analytics'],
-        ['Chain reorganization tracker', 'on-chain-analytics'],
-        ['Transaction confirmation estimator', 'on-chain-analytics'],
-        ['Smart contract deployment tool', 'wallets-security'],
-        ['Hardware wallet management', 'wallets-security'],
-        ['Multi sig wallet setup', 'wallets-security'],
-        ['Cold storage security system', 'wallets-security'],
-        ['Hot wallet balancing tool', 'wallets-security'],
-        ['Portfolio correlation matrix', 'portfolio-risk'],
-        ['Asset allocation rebalancer', 'portfolio-risk'],
-        ['Cross exchange portfolio tracker', 'portfolio-risk'],
-        ['Multi currency position manager', 'portfolio-risk'],
-        ['Trading platform integration plugin', 'automation-apis'],
-        ['Charting platform strategy automation', 'automation-apis'],
-        ['Scriptable trading bot framework', 'automation-apis'],
-        ['Exchange integration SDK', 'automation-apis'],
-        ['REST API market data', 'automation-apis'],
-        ['Historical tick data analysis', 'automation-apis'],
-        ['Volatility index calculator', 'technical-analysis'],
-        ['ATR indicator settings', 'technical-analysis'],
-        ['VWAP execution tracker', 'technical-analysis'],
-        ['Order flow analytics tool', 'trading-platforms'],
-        ['Market microstructure dashboard', 'trading-platforms'],
-        ['Institutional trading terminal', 'trading-platforms'],
-        ['Custody solution provider', 'wallets-security'],
-        ['Settlement service infrastructure', 'wallets-security'],
-        ['Clearing house risk management', 'portfolio-risk'],
+        ['Mining rig', 'rigs-hardware'],
+        ['GPU miner', 'rigs-hardware'],
+        ['ASIC miner', 'rigs-hardware'],
+        ['Mining card', 'rigs-hardware'],
+        ['Graphics card for mining', 'rigs-hardware'],
+        ['Mining motherboard', 'rigs-hardware'],
+        ['Mining power supply', 'cooling-power'],
+        ['Mining fan', 'cooling-power'],
+        ['Mining rack', 'facilities-builds'],
+        ['Mining enclosure', 'facilities-builds'],
+        ['Mining chassis', 'facilities-builds'],
+        ['Mining heatsink', 'cooling-power'],
+        ['Mining riser cable', 'rigs-hardware'],
+        ['Mining USB controller', 'rigs-hardware'],
+        ['Mining firmware', 'rigs-hardware'],
+        ['Proof of work', 'network-validation'],
+        ['Hash rate calculator', 'performance-roi'],
+        ['Compute power', 'network-validation'],
+        ['Block reward', 'network-validation'],
+        ['Mining difficulty', 'network-validation'],
+        ['Mining pool share', 'network-validation'],
+        ['Digital currency computing', 'network-validation'],
+        ['Distributed ledger processing', 'network-validation'],
+        ['Blockchain validation service', 'network-validation'],
+        ['Network consensus algorithm', 'network-validation'],
+        ['Transaction verification', 'network-validation'],
+        ['Computational validation', 'network-validation'],
+        ['Cloud mining service', 'hosting-services'],
+        ['Managed mining', 'hosting-services'],
+        ['Remote mining operation', 'hosting-services'],
+        ['Mining hosting', 'hosting-services'],
+        ['Dedicated mining server', 'hosting-services'],
+        ['Mining as a service', 'hosting-services'],
+        ['Mining rental program', 'hosting-services'],
+        ['Turnkey mining solution', 'hosting-services'],
+        ['Mobile mining unit', 'facilities-builds'],
+        ['Containerized mining facility', 'facilities-builds'],
+        ['Mining electricity cost', 'cooling-power'],
+        ['Energy efficient mining', 'cooling-power'],
+        ['Renewable energy mining', 'cooling-power'],
+        ['Solar powered miner', 'cooling-power'],
+        ['Industrial power for miners', 'cooling-power'],
+        ['Mining cooling solution', 'cooling-power'],
+        ['Liquid cooling for mining', 'cooling-power'],
+        ['Air cooled mining rig', 'cooling-power'],
+        ['Heat recovery mining', 'cooling-power'],
+        ['Low voltage mining setup', 'cooling-power'],
+        ['Mining efficiency calculator', 'performance-roi'],
+        ['Optimal GPU configuration', 'performance-roi'],
+        ['Overclocking for mining', 'performance-roi'],
+        ['Power draw optimization', 'performance-roi'],
+        ['Mining profitability tool', 'performance-roi'],
+        ['Return on investment calculator', 'performance-roi'],
+        ['Cost per hash calculation', 'performance-roi'],
+        ['Maintenance schedule for miners', 'hosting-services'],
+        ['How to start mining at home', 'getting-started'],
+        ['Beginner mining guide', 'getting-started'],
+        ['DIY mining setup', 'getting-started'],
+        ['Home mining station', 'getting-started'],
+        ['Office based computing unit', 'getting-started'],
+        ['Garage mining project', 'getting-started'],
+        ['Small scale operation', 'getting-started'],
+        ['Scalable computing infrastructure', 'facilities-builds'],
+        ['Mining equipment supplier', 'hosting-services'],
+        ['Wholesale mining hardware', 'hosting-services'],
+        ['Certified refurbished miners', 'rigs-hardware'],
+        ['New generation processors', 'rigs-hardware'],
+        ['High performance chipsets', 'rigs-hardware'],
+        ['Modular design units', 'rigs-hardware'],
+        ['Interchangeable components', 'rigs-hardware'],
+        ['Miner maintenance service', 'hosting-services'],
+        ['Firmware update program', 'hosting-services'],
+        ['Monitoring dashboard for mining', 'hosting-services'],
+        ['Automated temperature control', 'cooling-power'],
+        ['Noise reduction system', 'cooling-power'],
+        ['Dust filter upgrade kit', 'cooling-power'],
+        ['Replacement fan assembly', 'cooling-power'],
+        ['Extended warranty coverage', 'hosting-services'],
+        ['Recurring revenue computing', 'performance-roi'],
+        ['Passive income stream generator', 'performance-roi'],
+        ['Long term storage validation', 'network-validation'],
+        ['Network security payment system', 'network-validation'],
+        ['Algorithm independent miner', 'rigs-hardware'],
+        ['Multi protocol validator', 'network-validation'],
+        ['US based mining operation', 'facilities-builds'],
+        ['European data center computing', 'facilities-builds'],
+        ['Residential electricity rate comparison for miners', 'performance-roi'],
+        ['Commercial grade units', 'rigs-hardware'],
+        ['Industrial scale deployment', 'facilities-builds'],
+        ['Warehouse conversion project', 'facilities-builds'],
+        ['Off grid computing station', 'facilities-builds'],
+        ['Computational proof system', 'network-validation'],
+        ['Digital asset validator', 'network-validation'],
+        ['Peer to peer network participant', 'network-validation'],
+        ['Decentralized processing unit', 'network-validation'],
+        ['Distributed storage verification service', 'network-validation'],
+        ['Cryptographic computation device', 'network-validation'],
+        ['Secure ledger maintainer', 'network-validation'],
+        ['Automated consensus engine', 'network-validation'],
+        ['Permanent record keeper', 'network-validation'],
     ];
 }
 
@@ -179,7 +179,7 @@ function cd_pick(array $list, int $seed): mixed
 
 /**
  * Lowercase a keyword for mid-sentence use, but keep a leading acronym
- * uppercase ("RSI oscillator" stays "RSI oscillator", not "rSI oscillator").
+ * uppercase ("GPU miner" stays "GPU miner", not "gPU miner").
  */
 function cd_lower_kw(string $keyword): string
 {
@@ -200,7 +200,7 @@ function cd_starts_vowel_sound(string $word): bool
     }
 
     // Acronyms pronounced as a word, not letter-by-letter (judge by first letter).
-    static $spokenAsWord = ['REST' => true, 'RING' => true];
+    static $spokenAsWord = ['ASIC' => true];
     $head = preg_match('/^[A-Z]{2,}/', $w, $m) ? $m[0] : '';
 
     if ($head !== '' && !isset($spokenAsWord[$head])) {
@@ -243,99 +243,99 @@ function cd_generate_article(array $kw, int $index): array
 
     $headlines = [
         "%s: a practical guide for 2026",
-        "How a %s fits into a modern trading stack",
+        "How a %s fits into a modern mining setup",
         "Choosing a %s without overpaying",
         "Inside the %s: what actually moves the needle",
-        "%s, explained for serious traders",
+        "%s, explained for home and pro operators",
         "The state of the %s in 2026",
         "%s: the features that matter and the ones that don't",
-        "What we learned shipping a %s to a live desk",
+        "What we learned running a %s around the clock",
     ];
 
     $leads = [
-        "Every desk eventually argues about its %s, and for good reason — it sits on the critical path between an idea and a filled order.",
-        "Ask ten traders about the ideal %s and you will get eleven answers. Here is the framework we use to cut through the noise.",
-        "The %s has quietly become table stakes, but most teams still evaluate it on the wrong criteria.",
-        "A %s looks simple on a marketing page and turns out to be anything but once real volume hits it.",
-        "If you only fix one part of your workflow this quarter, a properly chosen %s is a strong candidate.",
+        "Every operation eventually argues about its %s, and for good reason — it sits on the critical path between the watts coming in and the useful work going out.",
+        "Ask ten operators about the ideal %s and you will get eleven answers. Here is the framework we use to cut through the noise.",
+        "The %s has quietly become table stakes, but most setups still get judged on the wrong criteria.",
+        "A %s looks simple on a spec sheet and turns out to be anything but once it runs flat out, day and night.",
+        "If you only upgrade one part of your setup this quarter, a properly chosen %s is a strong candidate.",
     ];
 
     $angles = [
-        'trading-platforms' => [
-            'domain' => 'execution and market access',
-            'why' => "When spreads widen and order books thin out, the gap between a good and a mediocre %s shows up directly in your fill prices.",
+        'rigs-hardware' => [
+            'domain' => 'turning power into hashes',
+            'why' => "When margins tighten and difficulty climbs, the gap between a good and a mediocre %s shows up directly in your hashrate per watt.",
             'bullets' => [
-                'Latency and uptime during the most volatile sessions, not the calm ones',
-                'Breadth of supported venues, instruments and order types',
-                'Fee tiers, maker rebates and how they scale with volume',
-                'Built-in risk controls: position limits, kill switches, max-order checks',
-                'API parity — anything the UI can do, the API should do too',
+                'Hashrate and stability under sustained, round-the-clock load — not bench numbers',
+                'Power draw at the wall and real efficiency in joules per unit of work',
+                'Build quality of connectors, boards and solder under constant heat cycling',
+                'Firmware maturity, tuning headroom and how often updates actually ship',
+                'Spare-part availability and how quickly a dead unit comes back online',
             ],
         ],
-        'technical-analysis' => [
-            'domain' => 'reading price action',
-            'why' => "A %s is only as useful as your discipline around it; the same signal that prints money in a trend will bleed you dry in a range.",
+        'cooling-power' => [
+            'domain' => 'heat and electricity',
+            'why' => "Heat and power are where most setups quietly bleed money; a weak %s turns expensive watts into noise and shortens hardware life.",
             'bullets' => [
-                'Whether the calculation matches the textbook definition exactly',
-                'How it behaves on low-liquidity assets and gappy data',
-                'Configurable lookback periods and smoothing options',
-                'Repainting behaviour — does the signal change after the candle closes?',
-                'How cleanly it composes with the rest of your chart',
+                'Thermal headroom at your worst-case ambient, not a cool test lab',
+                'Real power factor and draw under full load, measured at the wall',
+                'Noise and airflow you can actually live with in the space you have',
+                'Dust, humidity and corrosion tolerance over months of uptime',
+                'Whether waste heat is simply dumped or recovered into something useful',
             ],
         ],
-        'defi-liquidity' => [
-            'domain' => 'on-chain liquidity',
-            'why' => "In DeFi the %s does not just report numbers — it changes your actual yield and risk the moment you deposit.",
+        'facilities-builds' => [
+            'domain' => 'space, density and deployment',
+            'why' => "Floor space, weight and airflow add up fast; the wrong %s caps how many units you can run long before your power does.",
             'bullets' => [
-                'Whether quoted APRs are net of fees, gas and impermanent loss',
-                'Smart-contract audit history and time-tested TVL',
-                'How slippage scales with trade size against pool depth',
-                'Exit liquidity — can you actually get out at scale?',
-                'Cross-chain assumptions and bridge risk baked into the numbers',
+                'Rack density versus the airflow and service access you actually need',
+                'Structural, fire and electrical code for the space you are converting',
+                'How cleanly it scales from a handful of units to a full room',
+                'Portability and lead time if the site or the power deal changes',
+                'Total cost per slot once cooling, wiring and mounting are counted',
             ],
         ],
-        'on-chain-analytics' => [
-            'domain' => 'turning chain data into signal',
-            'why' => "Raw chain data is noisy; a good %s earns its keep by being right about which numbers you can trust.",
+        'hosting-services' => [
+            'domain' => 'managed uptime',
+            'why' => "When someone else runs the hardware, a %s is only as good as its worst week — the SLA, the response time and what happens when a unit dies.",
             'bullets' => [
-                'Data freshness and how far behind the chain tip it runs',
-                'Node and indexer reliability behind the dashboard',
-                'How reorgs and orphaned blocks are handled',
-                'Whether metrics are reproducible from public data',
-                'Export and API access so you are not locked into one UI',
+                'What the SLA actually guarantees on uptime, and the penalties if it slips',
+                'Transparency on fees, power rates and the cut taken off the top',
+                'Response time on dead units, repairs and RMA in practice',
+                'Real monitoring and remote access, not a once-a-day status email',
+                'Contract terms, lock-in and how cleanly you can walk away',
             ],
         ],
-        'portfolio-risk' => [
-            'domain' => 'allocation and drawdown control',
-            'why' => "A %s is the difference between a bad week and a blown account; the math is boring right up until it is the only thing that matters.",
+        'network-validation' => [
+            'domain' => 'verifying work on the network',
+            'why' => "On a public network a %s is judged by the protocol, not the brochure — a correct result counts and a wrong one is simply discarded.",
             'bullets' => [
-                'Whether it models correlation, not just per-asset volatility',
-                'How it treats leverage and cross-margin exposure',
-                'Realistic assumptions — no survivorship bias in the backtest',
-                'Clear, auditable position-sizing rules',
-                'Alerts that fire before a limit is breached, not after',
+                'Whether the implementation follows the protocol spec exactly',
+                'How it behaves under high difficulty and contested conditions',
+                'Latency from finished work to an accepted, confirmed result',
+                'Resilience to reorgs, stale work and orphaned effort',
+                'Whether rewards and shares are accounted for transparently',
             ],
         ],
-        'automation-apis' => [
-            'domain' => 'automation and integration',
-            'why' => "Automation amplifies whatever you feed it, so a %s magnifies good logic and bad logic with equal enthusiasm.",
+        'performance-roi' => [
+            'domain' => 'efficiency and payback',
+            'why' => "A %s is the difference between a setup that pays for itself and one that just heats the room; the math is boring right up until it is the only thing that matters.",
             'bullets' => [
-                'Rate limits, and how gracefully the client backs off',
-                'Reconnection and gap-recovery on dropped connections',
-                'Idempotency on order placement to avoid duplicate fills',
-                'Quality of the SDK docs and example code',
-                'A realistic sandbox or paper-trading environment',
+                'Whether it models electricity, heat and downtime — not just sticker hashrate',
+                'Honest payback periods that assume difficulty rises over time',
+                'How tuning and overclock settings trade efficiency against lifespan',
+                'Realistic assumptions — no best-case-only numbers in the projection',
+                'Alerts that flag a unit going unprofitable before the bill arrives',
             ],
         ],
-        'wallets-security' => [
-            'domain' => 'custody and key management',
-            'why' => "With a %s the failure mode is not a bad trade — it is a permanent, irreversible loss of funds, so the bar is much higher.",
+        'getting-started' => [
+            'domain' => 'a first working setup',
+            'why' => "Starting out, a %s is where most beginners overspend or under-cool; getting it right early saves a painful, expensive rebuild later.",
             'bullets' => [
-                'Where private keys live and who can ever touch them',
-                'Recovery paths that survive a lost device or a dead signer',
-                'Independent audits and a track record under real load',
-                'Clear separation between hot operational funds and cold reserves',
-                'Approval workflows that require more than one human',
+                'Whether your existing power and breakers can actually handle it',
+                'Heat and noise in a shared, lived-in space — not a dedicated room',
+                'A budget that counts power and cooling, not just the upfront box',
+                'How easy it is to monitor, restart and maintain as a beginner',
+                'A clear upgrade path so a small start does not become a dead end',
             ],
         ],
     ];
@@ -345,14 +345,14 @@ function cd_generate_article(array $kw, int $index): array
     $definitions = [
         "At its core, a %s solves one job: %s. Everything else — the dashboards, the integrations, the marketing — hangs off that single responsibility.",
         "Strip away the branding and a %s is really a tool for %s. Judge it on how well it does that before anything else.",
-        "Think of a %s as the layer that owns %s. When it works you forget it exists; when it fails, you feel it immediately.",
+        "Think of a %s as the layer that owns %s. When it works you forget it exists; when it fails, you feel it in your uptime and your power bill.",
     ];
 
     $closings = [
-        "There is no universally \"best\" %s — only the one that matches your size, your style and the markets you actually trade. Start from your constraints, not the feature list.",
-        "Pick the %s you understand well enough to debug at 3 a.m. during a market event. Cleverness you cannot reason about is a liability, not an edge.",
-        "The right %s fades into the background and lets you focus on decisions that actually carry edge. If you are fighting the tool, you have the wrong one.",
-        "Run any %s in paper or at tiny size first. The marketing page never mentions the failure modes — your own logs will.",
+        "There is no universally \"best\" %s — only the one that matches your space, your power budget and the scale you actually run. Start from your constraints, not the spec sheet.",
+        "Pick the %s you understand well enough to troubleshoot at 3 a.m. when a unit drops offline. Cleverness you cannot reason about is a liability, not an edge.",
+        "The right %s fades into the background and lets you focus on uptime and efficiency. If you are fighting the gear, you have the wrong one.",
+        "Run any %s at small scale first. The spec sheet never mentions the failure modes — your own logs and your power meter will.",
     ];
 
     $headline = cd_fix_articles(sprintf(cd_pick($headlines, $seed), $keyword));
@@ -379,7 +379,7 @@ function cd_generate_article(array $kw, int $index): array
     {$bulletsHtml}    </ul>
 
     <h2>Common mistakes</h2>
-    <p>The usual trap is optimising for the happy path. A {$lower} that looks great on a quiet Tuesday can fall apart the moment volume, volatility or fees spike — which is exactly when you need it most. Test it under stress, with adversarial inputs, and on the messiest data you can find.</p>
+    <p>The usual trap is optimising for the happy path. A {$lower} that looks great on the bench can fall apart the moment heat, dust and 24/7 load build up — which is exactly when it matters most. Test it under sustained load, in real ambient conditions, and on the messiest power you actually have.</p>
 
     <h2>The bottom line</h2>
     <p>{$closing}</p>
@@ -399,9 +399,9 @@ function cd_generate_article(array $kw, int $index): array
 
     $excerpts = [
         "We break down what a %s does, where it shines, and how to size one up before you commit.",
-        "A no-nonsense look at the %s — the metrics that matter and the traps that don't make the brochure.",
-        "From first principles to the order ticket: the short version of everything you need to know about the %s.",
-        "What a %s gets right, what it quietly gets wrong, and how to tell the difference on your own desk.",
+        "A no-nonsense look at the %s — the numbers that matter and the traps that don't make the spec sheet.",
+        "From first principles to the rack: the short version of everything you need to know about the %s.",
+        "What a %s gets right, what it quietly gets wrong, and how to tell the difference in your own setup.",
     ];
     $excerpt = cd_fix_articles(sprintf(cd_pick($excerpts, $seed * 11), $lower));
 

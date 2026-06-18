@@ -18,7 +18,7 @@ define('CD_DATA', CD_ROOT . '/data');
 define('CD_VIEWS', CD_ROOT . '/views');
 define('CD_DB', getenv('CD_DB') ?: CD_DATA . '/cryptodesk.sqlite');
 define('CD_SITE_NAME', 'MarketDesk');
-define('CD_SITE_TAGLINE', 'Tools, tactics and infrastructure for active traders');
+define('CD_SITE_TAGLINE', 'Hardware, power and uptime for mining operators');
 
 require CD_ROOT . '/src/Database.php';
 require CD_ROOT . '/src/ArticleRepository.php';
